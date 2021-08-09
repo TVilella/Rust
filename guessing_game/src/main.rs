@@ -3,29 +3,35 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Pense em um número!");
+    println!("Pense em um número de 0 a 100!");
 
     let secret_number = rand::thread_rng().gen_range(1..101);
-    println!("O número secreto é: {}", secret_number);
+    //    println!("O número secreto é: {}", secret_number);
 
-    println!("Por favor digite o número que pensou.");
+    loop {
+        println!("Digite o número que pensou.");
 
-    let mut guess = String::new();
+        let mut guess = String::new();
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Falha ao ler a linha");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Digite um número válido!!!");
+                continue;
+            }
+        };
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Falha ao ler a linha");
+        //        println!("Voce escolheu o número:{}", guess);
 
-    let guess: u32 = guess
-                        .trim()
-                        .parse()
-                        .expect("Por favor, digite um número!");
-
-    println!("Voce pensou no número:... {}", guess);
-    
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Muito pequeno!"),
-        Ordering::Greater => println!("Muito grande!"),
-        Ordering::Equal => println!("Aew!! Acertou!"),
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Muito pequeno!"),
+            Ordering::Greater => println!("Muito grande!"),
+            Ordering::Equal => {
+                println!("Aew!! Acertou!");
+                break;
+            }
+        }
     }
 }
