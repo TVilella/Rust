@@ -26,8 +26,8 @@ fn main() {
         //        println!("Voce escolheu o número:{}", guess);
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Muito pequeno!"),
-            Ordering::Greater => println!("Muito grande!"),
+            Ordering::Less => println!("Chutou baixo!"),
+            Ordering::Greater => println!("Chutou alto!"),
             Ordering::Equal => {
                 println!("Aew!! Acertou!");
                 break;
