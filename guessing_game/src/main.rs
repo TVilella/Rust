@@ -3,13 +3,13 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Pense em um número de 0 a 100!");
+    println!("Tente acertar o numero de 0 a 100!");
 
     let secret_number = rand::thread_rng().gen_range(1..101);
     //    println!("O número secreto é: {}", secret_number);
 
     loop {
-        println!("Digite o número que pensou.");
+        println!("Digite o seu papite.");
 
         let mut guess = String::new();
         io::stdin()
